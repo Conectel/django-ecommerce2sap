@@ -42,7 +42,7 @@
         <div class='row' style="width: 100%; padding-right: 2%; padding-left: 2%;">
             <div class="col-md-3" id="products_grid_before">
                 <ul class="nav nav-pills nav-stacked mt16">
-                    <li><a href="{% url 'index' %}">All Products</a></li>
+                    <li class="active"><a href="{% url 'index' %}">All Products</a></li>
 					{% for category in categs %}
                         <ul class="nav nav-pills nav-stacked mt16">
                             <li ><a > {{category.name}}</a></li>
