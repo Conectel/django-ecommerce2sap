@@ -9,15 +9,9 @@
                         </div>
                         <div class="col-md-8 ">
                             <h2 itemprop="name" >Product Name:  {{ product.name }}</h2>
-        					<h5>BRAND: {{ product.description }}</h5>
-				            <div class="row-fluid">
-					            {% if product.description_sale %}
-						            <p>{{ product.description_sale }}</p>
-					            {% endif %}
-				            </div>
 				            <div class="row-fluid">
 					            {% if product.sale_delay %}
-						            <p>Sale delay: {{ product.sale_delay }} days</p>
+						            <p><b>Sale delay:</b> {{ product.sale_delay }} days</p>
 					            {% endif %}
 				            </div>
 				            <div class="row-fluid">
@@ -57,7 +51,9 @@
 					            </form>
 				            </div>
                             <div>
-                                <h1>  </h1>
+                                <BR/>
+                                <BR/>
+                                <BR/>
                             </div>
                             <div>
                                 <ul class="nav nav-pills">
@@ -66,6 +62,16 @@
                                 </ul>
                             </div>
                                 <h1>  </h1>
+				                <div class="row-fluid">
+					                {% if product.description %}
+						                <p>{{ product.description }}</p>
+					                {% endif %}
+				                </div>
+				                <div class="row-fluid">
+					                {% if product.description_sale %}
+						                <p>{{ product.description_sale }}</p>
+					                {% endif %}
+				                </div>
                                 <h1>  </h1>
                     </div>
             </section>
