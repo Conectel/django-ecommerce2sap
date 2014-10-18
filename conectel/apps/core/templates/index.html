@@ -12,7 +12,6 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span10 offset1">
-            {{ page.page_count }}
             {% if page.page_count != 1 %} 
             <ul class="pagination">
 		    	{% if products.has_previous %}
@@ -78,8 +77,8 @@
                                         <h5><strong><a href="{% url 'product-detail' product.id %}" itemprop="name" />{{ product.name }}</strong></h5>
                                         <div class="text-info" >
                                             <div itemprop="description" >{{ product.default_code }} - {{ product.description_sale }}</div>
-                                            <div> UOM: {{ product.uom_id.1 }} </div>
-                                            <div> Warranty: {{ product.warranty }} months</div>
+                                            <div><b> UOM: </b>{{ product.uom_id.1 }} </div>
+                                            <div><b> Warranty: </b> {{ product.warranty }} months</div>
                                         </div>
                                     </div>
                                 </td>
