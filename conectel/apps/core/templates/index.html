@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+	<div class="row-fluid">
+		<div class="span10 offset1">
+			{% if query %}<p><small>Su búsqueda fue "{{ query }}"</small></p>{% endif %} 
+			{% if cart_have_items %}
+				<span>Your cart have items!</span> <a href="{% url 'clean-cart' %}" class="btn btn-mini btn-warning">Clean Cart</a>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span10 offset1">
+            {{ page.page_count }}
+            {% if page.page_count != 1 %} 
+            <ul class="pagination">
+		    	{% if products.has_previous %}
+		    		<li class="previous">
+		    			<a href="?page={{ products.previous_page_number }}">{% trans "Back" %}</a>
+		    		</li>
+                {% else %}
+		    		<li class="previous">
+		    			<a href="">{% trans "Back" %}</a>
+		    		</li>
+		        {% endif %}
+                {% for pages in page.pages %}
+                    <li > <a href="?page={{ pages.num }}" > {{pages.num}} </a></li>
+                {% endfor %}
+		        {% if products.has_next %}
+		    		<li class="next">
+		    			<a href="?page={{ products.next_page_number }}">{% trans "Next" %}</a>
+		    		</li>
+                {% else %}
+		    		<li class="next">
+		    			<a href="">{% trans "Next" %}</a>
+		    		</li>
+		        {% endif %}
+
+            </ul>
+            {% endif %}
+		</div>
+        <div class='row' style="width: 100%; padding-right: 2%; padding-left: 2%;">
+            <div class="col-md-3" id="products_grid_before">
+                <ul class="nav nav-pills nav-stacked mt16">
+                    <li><a href="{% url 'index' %}">All Products</a></li>
+					{% for category in categs %}
+                        <ul class="nav nav-pills nav-stacked mt16">
+                            <li ><a > {{category.name}}</a></li>
+                        </ul>
+                    {% endfor %}
+                </ul>
+            </div>
+    		<div class="col-md-9">
+                <table class="table table-bordered">
+					<tbody>
+						{% for product in products %}
+                        <tr>
+				    		<form method="post" action="{% url 'cart-add' %}">
+								{% csrf_token %}
+								<input type="hidden" name="product_id" value="{{ product.id }}" />
+								<input type="hidden" name="product_name" value="{{ product.name }}" />
+								<input type="hidden" name="unit_price" value="{{ product.list_price }}" />
+								<input type="hidden" name="uom" value="{{ product.uom_id.1 }}" />
+								<input type="hidden" name="sale_delay" value="{{ product.sale_delay }}" />
+								<input type="hidden" name="product_code" value="{{ product.default_code }}" />
+
+
+                                <td width="20%">
+                                  <div class="oe_product_image" >
+                                      <a itemprop="url" >
+                                          <img class="img-responsive img-thumbnail" data-src="holder.js/240x140" alt="300x200" src="{% if product.image_medium != False %}data:image/png;base64,{{ product.image_medium }}{% else %} {{ STATIC_URL }}img/no-image.png{% endif %}">
+                                      </a>
+                                  </div>
+                                </td>
+                                <td width="60%">
+                                    <div style="width: 100%; float:left;">
+                                        <h5><strong><a href="{% url 'product-detail' product.id %}" itemprop="name" />{{ product.name }}</strong></h5>
+                                        <div class="text-info" >
+                                            <div itemprop="description" >{{ product.default_code }} - {{ product.description_sale }}</div>
+                                            <div> UOM: {{ product.uom_id.1 }} </div>
+                                            <div> Warranty: {{ product.warranty }} months</div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td width="20%">
+                                        <div >
+                                            <div style="width: 100%; float:left;"" >
+                                                <input type="number" name="quantity" min="0" class="form-control" value="0" />
+                                            </div>
+                                            <div style="width: 100%; float:left; text-align: right; margin-left:0px; margin-right:10px; margin-top:5px; margin-bottom:5px;">
+                                                    <h3><b>$ {{ product.list_price|floatformat:2 }} </b></h3>
+                                            </div>
+                                            <div  width="100%">
+                                                <a href="{% url 'product-detail' product.id %}" class="btn btn-default">{% trans "Details" %}</a>
+                                                <button type="submit" class="btn btn-primary">{% trans "Add to Cart" %}</button>
+                                            </div>
+                                        </div>
+                                </td>
+                            </form>
+                        </tr>
+						{% endfor %}
+					</tbody>
+                </table>
+            </div>
+        </div>
+	</div>
+	<div class="row-fluid">
+		<div class="span10 offset1">
+            <ul class="pagination">
+		    	{% if products.has_previous %}
+		    		<li class="previous">
+		    			<a href="?page={{ products.previous_page_number }}">{% trans "Back" %}</a>
+		    		</li>
+                {% else %}
+		    		<li class="previous">
+		    			<a href="">{% trans "Back" %}</a>
+		    		</li>
+		        {% endif %}
+                {% for pages in page.pages %}
+                    <li > <a href="?page={{ pages.num }}" > {{pages.num}} </a></li>
+                {% endfor %}
+		        {% if products.has_next %}
+		    		<li class="next">
+		    			<a href="?page={{ products.next_page_number }}">{% trans "Next" %}</a>
+		    		</li>
+                {% else %}
+		    		<li class="next">
+		    			<a href="">{% trans "Next" %}</a>
+		    		</li>
+		        {% endif %}
+
+            </ul>
+		</div>
+	</div>
+{% endblock %}

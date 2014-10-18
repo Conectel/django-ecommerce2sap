@@ -1,0 +1,38 @@
+<div class="panel-footer" id="footer" style="background-color: #FFFFFF; color: #000000; padding-top: 30px; padding-bottom: 30px; padding-right: 5%; padding-left: 5%;">
+    <div class="container hidden-print">
+        <div class="row">
+            <div class="col-md-8">
+                <div>
+                    <h3>
+                        <span>{{company_dict.name}}</span>
+                    </h3>
+                    <ul class="list-unstyled">
+                        <li >                                <span >  {{company_dict.street}} - {{company_dict.street2}} </span></li>
+                        <li >                                <span >  {{company_dict.city}} - {{company_dict.state_id.1}} - {{company_dict.zip}} - {{company_dict.country_id.1}}  </span></li>
+                        <li ><i class="fa fa-phone"></i>     <span >  {{company_dict.phone}} </span></li>
+                        <li ><i class="fa fa-envelope"></i>  <span >  {{company_dict.email}}  </span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4" id="info">
+            </div>
+        </div>
+    </div>
+    <div class="container mt16 mb8" >
+        <div class="pull-right" >
+            Powered by 
+            <a class="label label-danger" href="http://www.odoo.com">Odoo</a>
+            <a class="label label-danger" href="http://www.djangoproject.com">Django</a>
+            and Developed by
+            <a class="label label-danger" href="http://www.conectel.mx/">Conectel</a>
+            <p> Version: 2.01 </p>
+        </div>
+        <div class="pull-right" >
+
+        </div>
+        <div class="pull-left text-muted">
+            Copyright &reg; <span >{{company_dict.name}}</span>
+        </div>
+    </div>
+</div>
+

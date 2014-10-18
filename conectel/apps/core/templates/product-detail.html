@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+                <section class="container oe_website_sale" id="product_detail">
+                    <div class="row">
+                        <div class="col-xs-6 col-lg-4">
+                            <img class="img-responsive img-thumbnail" data-src="holder.js/240x140" alt="300x200" src="{% if product.image_medium != False %}data:image/png;base64,{{ product.image_medium }}{% else %} {{ STATIC_URL }}img/no-image.png{% endif %}">
+                        </div>
+                        <div class="col-md-8 ">
+                            <h2 itemprop="name" >Product Name:  {{ product.name }}</h2>
+        					<h5>BRAND: {{ product.description }}</h5>
+				            <div class="row-fluid">
+					            {% if product.description_sale %}
+						            <p>{{ product.description_sale }}</p>
+					            {% endif %}
+				            </div>
+				            <div class="row-fluid">
+					            {% if product.sale_delay %}
+						            <p>Sale delay: {{ product.sale_delay }} days</p>
+					            {% endif %}
+				            </div>
+				            <div class="row-fluid">
+                                <div itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" class="product_price mt16">
+                                    <h3 class="oe_price_h4 css_editable_mode_hidden">
+        					            {% if product.list_price %}
+                                            <h2 class="text-danger oe_default_price" style="text-decoration:  white-space: nowrap;"/>
+                                                <b> $ {{ product.list_price|floatformat:2 }} </b>
+                                            </h2>
+        					            {% endif %}
+                                    </h3>
+                                </div>
+				            </div>
+				            <div class="row-fluid">
+					            <form method="post"  action="{% url 'cart-add' %}">
+						            <div class="col-lg-12">
+						            {% csrf_token %}
+						            <input type="hidden" name="product_id" value="{{ product.id }}" />
+						            <input type="hidden" name="product_name" value="{{ product.name }}" />
+						            <input type="hidden" name="unit_price" value="{{ product.list_price }}" />
+						            <input type="hidden" name="uom" value="{{ product.uom_id.1 }}" />
+						            <input type="hidden" name="sale_delay" value="{{ product.sale_delay }}" />
+						            <input type="hidden" name="product_code" value="{{ product.default_code }}" />
+						            </div>
+						            <div class="col-lg-7" style="width: 100%; ">
+                                        <div style="width: 15%; float:left;">
+    							            <input type="number" name="quantity" min="0" class="form-control" value="0" />
+                                        </div>
+                                        <div style="width: 10%; float:left;">
+                                            <p> </p>
+                                        </div>
+                                        <div style="width: 70%; float:left;">
+        						            <button type="submit" class="btn btn-primary">Add to Cart</button>
+    	    				                <a href="javascript:history.back();" class="btn btn-default">Back</a>
+                                        </div>
+						            </div>
+					            </form>
+				            </div>
+                    </div>
+            </section>
+
+{% endblock %}

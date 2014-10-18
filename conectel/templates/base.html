@@ -1,0 +1,34 @@
+{% load compress %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ company_dict.name }} - ecommerce</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block stylesheets %}
+        {% compress css %}
+            <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+            <link href="{{ STATIC_URL }}css/bootstrap-responsive.min.css" rel="stylesheet">
+            <link href="{{ STATIC_URL }}css/application.css" rel="stylesheet">
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+            <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+        {% endcompress %}
+    {% endblock %}
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    {% include "navbar.html" %}
+    <div class="container-fluid body">
+        <div class="row-fluid">
+            {% block content %} {% endblock %}  
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    {% include "footer.html" %}
+</body>
+</html>

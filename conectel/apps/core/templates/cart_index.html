@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div id="wrap" style="width: 100%; padding-right: 7%; padding-left: 7%; border-style: solid;  border-width: 5px; border-color: #FFFFFF;">
+			<h2>{% trans "Shopping Cart" %}</h2>
+			{% if cart_items %}
+                          <table class='table table-striped table-condensed' id="cart_products" t-if="website_sale_order and website_sale_order.website_order_line">
+                              <thead>
+                                  <tr>
+                                      <th width="40" style="text-align: center;">{% trans "Product" %}</th>
+                                      <th width="10" style="text-align: center;">{% trans "Quantity" %}</th>
+                                      <th width="10" style="text-align: center;">{% trans "Unit Price" %}</th>
+            						  <th width="10" style="text-align: center;">{% trans "UOM" %}</th>
+		            				  <th width="10" style="text-align: center;">{% trans "Total" %}</th>
+		            				  <th width="10" style="text-align: center;">{% trans "Actions" %}</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+							{% for item in cart_items %}
+								<tr>
+									<form method="post" action="{% url 'cart-add' %}">
+									{% csrf_token %}
+									<input type="hidden" name="product_id" value="{{ item.keys.0 }}" />
+									<input type="hidden" name="unit_price" value="{{ item.values.0.unit_price }}" />
+									<td width="40" style="text-align: left;">{{ item.values.0.name }}</td>
+									<td width="10" style="text-align: center;"><input type="number" name="quantity" min="0" value="{{ item.values.0.quantity }}" class="form-control" /></td>
+									<td width="10" style="text-align: right;">$ {{ item.values.0.unit_price|floatformat:2 }}</td>
+									<td width="10" style="text-align: center;">{{ item.values.0.uom }}</td>
+									<td width="10" style="text-align: right;">$ {{ item.values.0.total_item|floatformat:2 }}</td>
+									<td width="10" style="text-align: center;">
+										<div class="btn-group">
+											<button type="submit" class="btn btn-primary">{% trans "Update" %}</button>
+											<a href="{% url 'delete-from-cart' item.keys.0 %}" class="btn btn-danger">X</a>
+										</div>
+									</td>
+									</form>
+                                  </tr>
+    							{% endfor %}
+                              </tbody>
+                          </table>
+                            <table class='pull-right mb16' id="cart_total" style="width: 25%; padding-right: 40%; padding-left: 20%; border-style: solid;  border-width: 5px; border-color: #FFFFFF;">
+                                <thead>
+                                    <tr width="100" style="border-top: 1px solid #000" id="order_total">
+                                        <th><h3>Subtotal: </h3></th>
+                                        <th class="text-right">
+                                          <h3>$ {{ cart_subtotal|floatformat:2 }}</h3>
+                                        </th>
+                                    </tr>
+                                    <tr width="120" class="text-muted" id="order_total_taxes">
+                                        <td><abbr title="Taxes may be updated after providing shipping address">Taxes:</abbr></td>
+                                        <td class="text-right">
+                                            <span> 	$ {{ cart_iva|floatformat:2 }} </span>
+                                        </td>
+                                    </tr>
+                                    <tr width="100" style="border-top: 1px solid #000" id="order_total">
+                                        <th><h3>Total: </h3></th>
+                                        <th class="text-right">
+                                          <h3><span> $ {{ cart_total|floatformat:2 }} </span></h3>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+					{% include "sap_form.html" %}
+				</div>
+			{% else %}
+				<p><strong>Your cart is empty!</strong></p>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

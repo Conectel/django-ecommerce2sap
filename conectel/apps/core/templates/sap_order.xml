@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessDocument>
+	<CatalogHeader></CatalogHeader>
+	<Catalog>
+		<CatalogID></CatalogID>
+		<Product ProductType="Good">
+			<CatalogKey>11</CatalogKey>
+			<ParentCategoryID></ParentCategoryID>
+			<Description Language="EN"></Description>
+			<ShoppingBasketItem RefVendorDescription="0" RefManufacturerDescription="1">
+				<Quantity UOM="EA">1</Quantity>
+				<NetPrice>
+					<Price Currency="USD">0.50</Price>
+					<PriceUnit>5</PriceUnit>
+				</NetPrice>
+				<LeadTime>1</LeadTime>
+				<Quote>
+					<QuoteID>111</QuoteID>
+					<QuoteItemID>1111</QuoteItemID>
+				</Quote>
+				<ItemText Language="EN"></ItemText>
+			</ShoppingBasketItem>
+			<ManufacturerDescription ID="1">
+				<PartnerProductID Code="Other">4712</PartnerProductID>
+				<PartnerID Code="Other">4711</PartnerID>
+			</ManufacturerDescription>
+			<VendorDescription ID="0">
+				<PartnerProductID Code="Other">648570</PartnerProductID>
+				<PartnerID Code="Other">1768</PartnerID>
+				<LeadTime>1</LeadTime>
+				<BuyerContract>
+					<ContractID>111</ContractID>
+					<ContractItemID>1111</ContractItemID>
+				</BuyerContract>
+			</VendorDescription>
+		</Product>
+	</Catalog>
+</BusinessDocument>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+	<div class="row-fluid">
+		{{ product.name }}
+		<p>Are you sure?</p>
+
+	    <form action="." method="post" accept-charset="utf-8">
+	        {% csrf_token %}
+	        <input type="hidden" name="product_id" value="{{ product_id }}" />
+	        <p>
+	        	<a href="javascript:history.back();" class="btn btn-danger btn-mini">Back</a>
+	        	<input type="submit" class="btn btn-primary btn-mini" value="Delete &rarr;">
+	        </p>
+	    </form>
+	</div>
+{% endblock %}
