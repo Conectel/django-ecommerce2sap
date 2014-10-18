@@ -50,29 +50,29 @@
 						            </div>
 					            </form>
 				            </div>
-                            <div>
+				            <div>
                                 <BR/>
                                 <BR/>
                                 <BR/>
-                            </div>
-                            <div>
-                                <ul class="nav nav-pills">
+				            </div>
+                            <div style="background-color: #FFFFFF; color: #000000; padding-top: 15px; padding-bottom: 30px; padding-right: 5%; padding-left: 5%;">
+                                <ul class="nav nav-pills " style="border-bottom:1px solid black;">
                                   <li class="active"><a href="#">Description</a></li>
                                   <li><a href="#">Documentation</a></li>
                                 </ul>
+                                <div style="background-color: #FFFFFF; color: #000000;  padding-top: 15px; padding-bottom: 30px; padding-right: 5%; padding-left: 5%;">
+				                    <div class="row-fluid">
+					                    {% if product.description %}
+						                    <p>{{ product.description }}</p>
+					                    {% endif %}
+				                    </div>
+				                    <div class="row-fluid">
+					                    {% if product.description_sale %}
+						                    <p>{{ product.description_sale }}</p>
+					                    {% endif %}
+				                    </div>
+                                </div>
                             </div>
-                                <h1>  </h1>
-				                <div class="row-fluid">
-					                {% if product.description %}
-						                <p>{{ product.description }}</p>
-					                {% endif %}
-				                </div>
-				                <div class="row-fluid">
-					                {% if product.description_sale %}
-						                <p>{{ product.description_sale }}</p>
-					                {% endif %}
-				                </div>
-                                <h1>  </h1>
                     </div>
             </section>
 
