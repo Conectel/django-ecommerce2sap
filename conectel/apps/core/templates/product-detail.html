@@ -6,14 +6,12 @@
                     <div class="row">
                         <div class="col-xs-6 col-lg-4">
                             <img class="img-responsive img-thumbnail" data-src="holder.js/240x140" alt="300x200" src="{% if product.image_medium != False %}data:image/png;base64,{{ product.image_medium }}{% else %} {{ STATIC_URL }}img/no-image.png{% endif %}">
+                            <BR/>
+                            <small> Las imágenes son ilustrativas, no constituyendo en ningún caso una relación exacta y exhaustiva del producto. </small>
                         </div>
                         <div class="col-md-8 ">
                             <h2 itemprop="name" >Product Name:  {{ product.name }}</h2>
-				            <div class="row-fluid">
-					            {% if product.sale_delay %}
-						            <p><b>Sale delay:</b> {{ product.sale_delay }} days</p>
-					            {% endif %}
-				            </div>
+
 				            <div class="row-fluid">
                                 <div itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" class="product_price mt16">
                                     <h3 class="oe_price_h4 css_editable_mode_hidden">
@@ -69,6 +67,11 @@
 				                    <div class="row-fluid">
 					                    {% if product.description_sale %}
 						                    <p>{{ product.description_sale }}</p>
+					                    {% endif %}
+				                    </div>
+				                    <div class="row-fluid">
+					                    {% if product.sale_delay %}
+						                    <p><b>Sale delay:</b> {{ product.sale_delay }} days</p>
 					                    {% endif %}
 				                    </div>
                                 </div>

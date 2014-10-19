@@ -74,7 +74,7 @@
                                 </td>
                                 <td width="60%">
                                     <div style="width: 100%; float:left;">
-                                        <h5><strong><a href="{% url 'product-detail' product.id %}" itemprop="name" />{{ product.name }}</strong></h5>
+                                        <h5><strong><a href="{% url 'product-detail' product.id %}" itemprop="name">{{ product.name }}</a></strong></h5>
                                         <div class="text-info" >
                                             <div itemprop="description" >{{ product.default_code }} - {{ product.description_sale }}</div>
                                             <div><b> UOM: </b>{{ product.uom_id.1 }} </div>
